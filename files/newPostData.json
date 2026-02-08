@@ -1,0 +1,5 @@
+{
+    "title": "Playwright API Test - data from JSON file",
+    "body": "This is a test post created using Playwright API testing with data from a JSON file.",
+    "userId": 7
+}
