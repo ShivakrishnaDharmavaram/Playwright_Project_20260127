@@ -1,4 +1,5 @@
 //Read json data from file and create a new post.
+//Example
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 
