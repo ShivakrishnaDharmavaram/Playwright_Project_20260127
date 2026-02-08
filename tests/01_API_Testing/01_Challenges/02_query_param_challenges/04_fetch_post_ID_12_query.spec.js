@@ -15,4 +15,4 @@ test('Fetch a post with id 102 and validate status code using query parameter', 
 });
 
 // Here the code fetch a post with id 12 using query parameter and validate the status code is 200. The response is logged in JSON format and the type of response is also logged.
-// It is returing an whole post
+// It is returing complete list of posts instead of post with id 12 because the API endpoint is not designed to filter posts based on query parameters. The API returns all posts regardless of the query parameters provided.
