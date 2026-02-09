@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean":  "rd /s /q test-results",
-    "test" :  "npx playwright test",
-    "ct"   :  "npm run clean && npx playwright test",
-    "cth"  :  "npm run clean && npx playwright test --headed",
-    "th"   :  "npx playwright test --headed",
-    "tm"   :  "npx playwright test --max-failures=1",
-    "tl"   :  "npx playwright test --reporter=line"
+    "clean": "rd /s /q test-results",
+    "test": "npx playwright test",
+    "ct": "npm run clean && npx playwright test",
+    "cth": "npm run clean && npx playwright test --headed",
+    "th": "npx playwright test --headed",
+    "tm": "npx playwright test --max-failures=1",
+    "tl": "npx playwright test --reporter=line"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,8 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4"
   }
 }
