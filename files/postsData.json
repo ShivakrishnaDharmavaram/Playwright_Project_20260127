@@ -1,0 +1,17 @@
+[
+    {
+        "title": "First Post -DDT",
+        "body": "This is the body of the first post created using data-driven testing with Playwright API tests.",
+        "userId": 1
+    },
+    {
+        "title": "Second Post - DDT",
+        "body": "This is the body of the second post created using data-driven testing with Playwright API tests.",
+        "userId": 2
+    },
+    {
+        "title": "Third Post - DDT",
+        "body": "This is the third post created via DDT",
+        "userId": 3
+    }
+]
