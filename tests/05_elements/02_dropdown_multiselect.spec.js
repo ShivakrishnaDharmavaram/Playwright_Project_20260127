@@ -6,12 +6,12 @@ test('Multi-Select Dropdown Example', async ({ page }) => {
     const url = "https://dd-demo-tau.vercel.app/web_elements.html#8-multiselect";
     await page.goto(url);
     await page.setViewportSize({ width: 1024, height: 768 });
-    await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);  // wait to see the action (debug/ demo purpose)
 
     // Validate page title
     await expect(page).toHaveTitle(/Playwright/i);
 
-    await page.waitForTimeout(2000);
+    // await page.waitForTimeout(2000);
     // ------------------------------------
 
     // Locate multi-select dropdown
@@ -22,13 +22,13 @@ test('Multi-Select Dropdown Example', async ({ page }) => {
     console.log('Available options:', allOptions);
     expect(allOptions).toEqual(['Apple', 'Banana', 'Mango']); // Expected sequence
 
-    await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
     // Select multiple options by value
     await multiSelect.selectOption(['Apple', 'Mango']);
     console.log('Selected options: Apple and Mango');
 
-    await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
     // Validate selected values
     const selectedValues = await multiSelect.evaluate(el => Array.from(el.selectedOptions).map(opt => opt.text));
@@ -36,7 +36,7 @@ test('Multi-Select Dropdown Example', async ({ page }) => {
     expect(selectedValues).toEqual(['Apple', 'Mango']);
 
     // -------------------------------------
-    await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
     await page.close();
 });
