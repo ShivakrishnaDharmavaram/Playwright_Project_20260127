@@ -10,13 +10,26 @@ test('Shadow DOM Button Test', async ({ page }) => {
     // Validate page title
     await expect(page).toHaveTitle(/Playwright/i);
 
-    // Locate the shadow host element
+    // Locate the shadow host element and interact with shadow button
     const shadowHost = page.locator('#shadowHost');
+    const shadowMsg = page.locator('#shadowMsg');
     await expect(shadowHost).toBeVisible();
 
-    // Access the shadow root and locate the button inside it
-    const shadowButton = shadowHost.locator('button');
-    await expect(shadowButton).toBeVisible();
+    // // following is deprecated. not supported any more
+    //     const shadowButton = shadowHost.locator('pierce/#shadowBtn'); // Using Playwright's pierce selector
+    
+    // // // Playwright automatically pierces shadow roots when chaining locators.
+    // const shadowButton = page.locator('#shadowHost').locator('#shadowBtn');
+    // // OR
+    // // const shadowButton = page.locator('#shadowHost').getByRole('button', { name: 'Shadow Button' });
+
+    
+    // // Access the shadow root and locate the button inside it
+    // const shadowButton = shadowHost.locator('button');
+    // await expect(shadowButton).toBeVisible();
+
+    // Directly locate the button inside the shadow host using Playwright's locator API, which automatically handles Shadow DOM
+    const shadowButton = page.locator('button#shadowBtn'); // Directly locate button inside shadow host
 
     // Click the button inside the shadow DOM
     await shadowButton.click();
@@ -29,9 +42,10 @@ test('Shadow DOM Button Test', async ({ page }) => {
     // console.log('Clicked the button inside Shadow DOM directly using locator');
 
     // Validate the message displayed after clicking the button
-    const messageDiv = page.locator('#shadowMsg');
-    await expect(messageDiv).toHaveText('Shadow DOM button clicked');
-    console.log('Validated the message after clicking the button');
+    const messageText = await shadowMsg.textContent();
+    console.log('Message after clicking shadow button:', messageText.trim());
+    expect(messageText.trim()).toBe('Shadow DOM button clicked');
+
 
 
     await page.close();
