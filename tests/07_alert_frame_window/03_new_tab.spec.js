@@ -24,8 +24,9 @@ test('Handle new tab', async ({ context, page }) => {
         page.click('button#tabButton') // Click the button that opens a new tab
     ]);
 
-    // Wait for the new page to load
+    // Wait for the new page to load and content
     await newTab.waitForLoadState();
+    await expect(newTab).toHaveURL(/.*sample/); // Validate URL of new tab
     console.log("New Tab title: ", await newTab.title());
     console.log("New Tab URL: ", newTab.url());
 
