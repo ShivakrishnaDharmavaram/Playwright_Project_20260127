@@ -20,4 +20,5 @@ test('Hover over images and verify captions', async ({page}) => {
 
 
 //Dated: 2024-06-17
+
 // run in terminal: npx playwright test tests/00_Challenges/06_web_elements_handsOn/02_hovers_handsOn.spec.js --headed
