@@ -1,35 +1,56 @@
 const { test, expect } = require('@playwright/test');
 const ExcelJS = require('exceljs');
-const fs = require('fs');
 const path = require('path');
-const XLSX = require('xlsx');
+//read excel file using exceljs package, install using npm install exceljs
 
-//Load test data from Excel file
-const workbook = new ExcelJS.Workbook();
-const filePath = path.join(__dirname, 'files', 'postsData.xlsx');
-workbook.xlsx.readFile(filePath).then(() => { const worksheet = workbook.getWorksheet(1);
-    const postsData = [];
-    worksheet.eachRow(
-        { includeEmpty: false }, (row, rowNumber) => { if (rowNumber > 1) 
-            { 
-                // Skip header row 
-                const postData = { userId: row.getCell(1).value, title: row.getCell(2).value, body: row.getCell(3).value }; 
-                postsData.push(postData); 
-            } 
-        }
-    ); 
-    console.log('Posts Data:', postsData); 
-}) .catch(err => { console.error('Error reading Excel file:', err); });
-    
-// Get the first sheet const postsData = []; // Iterate through each row in the worksheet and push data to postsData array worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => { if (rowNumber > 1) { // Skip header row const postData = { userId: row.getCell(1).value, title: row.getCell(2).value, body: row.getCell(3).value }; postsData.push(postData); } }); console.log('Posts Data:', postsData); }) .catch(err => { console.error('Error reading Excel file:', err); });
-// const workbook = XLSX.readFile('files/postsData.xlsx');
+/**
+ * Utility function to read Excel data
+ */
+async function readExcelData() {
+  const workbook = new ExcelJS.Workbook();
+  const filePath = 'files/postsData.xlsx';
+//   const filePath = path.join(__dirname, '..', '..', 'files', 'postsData.xlsx');
 
+  await workbook.xlsx.readFile(filePath);
 
-// //Select a workbook sheet
-// const sheetName = workbook.SheetNames[0];
-// const worksheet = workbook.Sheets[sheetName];
+  const worksheet = workbook.getWorksheet(1);
+  const postsData = [];
 
-// //Convert the sheet data to JSON format
-// const postsData = XLSX.utils.sheet_to_json(worksheet);
+  worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+    if (rowNumber === 1) return; // skip header
 
-// console.log('Posts Data:', postsData);
+    postsData.push({
+      userId: row.getCell(1).value,
+      title: row.getCell(2).value,
+      body: row.getCell(3).value,
+    });
+  });
+
+  return postsData;
+}
+
+test('Create posts using data from Excel', async ({ request }) => {
+  const postsData = await readExcelData();
+
+  for (const post of postsData) {
+    const response = await request.post(
+      'https://jsonplaceholder.typicode.com/posts',
+      {
+        data: post,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    expect(response.status()).toBe(201);
+
+    const responseBody = await response.json();
+    console.log('Response:', responseBody);
+
+    // Basic validation
+    expect(responseBody.title).toBe(post.title);
+    expect(responseBody.body).toBe(post.body);
+    expect(responseBody.userId).toBe(post.userId);
+  }
+});
