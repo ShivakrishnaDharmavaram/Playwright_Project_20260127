@@ -30,4 +30,5 @@ test('Double Click Example', async ({page}) => {
 });
 
 //Dated: 2024-06-17
+
 //Run in terminal: npx playwright test tests/00_Challenges/06_web_elements_handsOn/01_double_click_handson.spec.js --headed
