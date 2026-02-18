@@ -31,5 +31,5 @@ test('Key Press Events Example', async ({page}) => {
     console.log("Page closed");
 });
 
-//Dated: 2024-06-17
+//Dated: 2024-06-17.
 //Run in terminal: npx playwright test tests/00_Challenges/06_web_elements_handsOn/04_key_press_events_handsOn.spec.js --headed

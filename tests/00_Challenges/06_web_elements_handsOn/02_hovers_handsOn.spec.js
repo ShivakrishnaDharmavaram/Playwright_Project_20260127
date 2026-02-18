@@ -17,3 +17,7 @@ test('Hover over images and verify captions', async ({page}) => {
     //timeout to observe the result before closing the browser
     await page.waitForTimeout(3000);
 });
+
+
+//Dated: 2024-06-17
+// run in terminal: npx playwright test tests/00_Challenges/06_web_elements_handsOn/02_hovers_handsOn.spec.js --headed

@@ -26,5 +26,5 @@ test('Drag and Drop Example', async ({page}) => {
     await page.close();
     console.log("Page closed");
 });
-
+//Dated: 2024-06-17
 //Run in terminal: npx playwright test tests/00_Challenges/06_web_elements_handsOn/03_drag_and_drop_handsOn.spec.js --headed
