@@ -5,7 +5,7 @@ dotenv.config();
 
 test('Yahoo login test', async ({page}) => {
     const url = "https://login.yahoo.com/";
-    await page.goto(url);
+    await page.goto(url, { waitUntil: 'domcontentloaded' }); // Wait for the page to load completely
     await page.setViewportSize({width: 1024, height: 768});
     await expect(page).toHaveTitle(/Yahoo/i);
     await expect(page.locator('input[name="username"]')).toBeVisible();
@@ -50,4 +50,4 @@ test('Yahoo login test', async ({page}) => {
     expect(mailURL).toContain('mail.yahoo.com');
 });
 
-//Run in terminal: npx playwright test tests/08_yahoo_login/01_yahoo_login.spec.js --headed
+//Run in terminal: npx playwright test tests/08_yahoo_login/01_yahoo_login_readfrom.env.spec.js --headed
