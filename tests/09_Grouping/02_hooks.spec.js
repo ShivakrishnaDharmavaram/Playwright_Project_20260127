@@ -28,3 +28,6 @@ test.describe("Purchase prod check order @e2e", () => {
 
 // # run the tests in this file
 // npx playwright test 09_Grouping/02_hooks.spec.js
+// # run the tests in this file with serial execution
+// npx playwright test -g '@e2e' 09_Grouping/02_hooks.spec.js
+// npx playwright test -g '@e2e' 09_Grouping/02 --------------Same as above.
