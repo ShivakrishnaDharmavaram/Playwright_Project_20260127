@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
+import path from 'path';
 
 test.skip('Alerts example1', async ({ page }) => {
 
-    const url = "D:\\Playwright_Project_20260127\\files\\SamplePage.html";
+    const url = path.join(__dirname, '..', '..', 'files', 'SamplePage.html');
     await page.goto(url);
     await page.setViewportSize({ width: 1024, height: 768 });
     await page.waitForTimeout(3000);
@@ -15,7 +16,7 @@ test.skip('Alerts example1', async ({ page }) => {
     page.on('dialog', async dialogParam => {
         console.log("Dialog type: ", dialogParam.type()); // simple, confirm, prompt
         console.log("Dialog Message: ", dialogParam.message());
-        await page.waitForTimeout(4000);
+        await page.waitForTimeout(4000);    
         await dialogParam.accept(); // accept() for OK, dismiss() for Cancel
     });
 
@@ -36,7 +37,7 @@ test.skip('Alerts example1', async ({ page }) => {
 
 test.skip('Alerts example2', async ({ page }) => {
 
-    const url = "D:/Playwright_Project_20260127/files/SamplePage.html";
+    const url = path.join(__dirname, '..', '..', 'files', 'SamplePage.html');
     await page.goto(url);
     await page.setViewportSize({ width: 1024, height: 768 });
     await page.waitForTimeout(3000);
@@ -82,7 +83,7 @@ test.skip('Alerts example2', async ({ page }) => {
 
 test('Alerts example3', async ({ page }) => {
 
-    const url = "D:/Playwright_Project_20260127/files/SamplePage.html";
+    const url = path.join(__dirname, '..', '..', 'files', 'SamplePage.html');
     await page.goto(url);
     await page.setViewportSize({ width: 1024, height: 768 });
     await page.waitForTimeout(3000);
@@ -99,7 +100,7 @@ test('Alerts example3', async ({ page }) => {
 
         await dialog.accept();
     });
-    await page.dblclick('#salert'); // trigger simple aler
+    await page.dblclick('#salert'); // trigger simple alert
     console.log("Event handled for simple alert");
     
     // ----------------------------------------------
