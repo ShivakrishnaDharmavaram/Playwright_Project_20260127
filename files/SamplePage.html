@@ -1,6 +1,7 @@
-<html>
+<html lang="en">
   <head>
     <title>Wallchart Validation Suite</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="version" content="1.0">
       <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-type">
       <meta name="projectHome" content="http://cleancode.sourceforge.net/">
@@ -32,12 +33,13 @@
 
   <h3><a name="sectionB" lang="fr-ch">Section B</a></h3>
   <form>
-    <input name= "username" type= "text" />
-    <input name= "password" type= "password" />
+    <input name= "username" type= "text" placeholder= "Username" />
+    <input name= "password" type= "password" placeholder= "Password" />
     <br/>
     <input name= "continue" type= "submit" value= "Login" />
     <input id='disabledItem' name= "continue" type= "button" value= "Clear" />
-	<input name= "verbose" type= "checkbox" checked="checked">Verbose</input>
+    <input name= "verbose" type= "checkbox" checked="checked" title="Verbose" />
+    <label for="verbose">Verbose</label>
   </form>
   
   <ul>
